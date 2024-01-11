@@ -1,0 +1,17 @@
+{% extends "main.html" %}
+
+{%block title%}
+Delete {{obj.name}}
+{%endblock%}
+
+
+{%block content%}
+<form method='POST' action=''>
+    {%csrf_token%}
+    <div>Are You Want Delete {{obj}}? </div>
+    <a href="{{request.META.HTTP_REFERER}}" class="btn btn-primary">Go Back</a>
+    <button type="submit" class="btn btn-danger">Submit</button>
+    {% comment %} <input type='submit'b class="btn btn-dark" /> {% endcomment %}
+</form>
+
+{%endblock%}

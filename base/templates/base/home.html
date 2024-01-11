@@ -1,0 +1,241 @@
+{% extends 'main.html' %}
+
+{% block title %}Home Page {%endblock%}
+
+{% block content%}
+
+<div class="container-fluid gedf-wrapper">
+
+    <div class="row">
+
+        <div class="col col-lg-2">
+            <h2 style='font-weight:bold; font-size:20px; background-color: #6c757d; padding: 8px; border-radius: 5px'>Browse Topic</h2>
+            <form class="d-flex" role="search" style='padding:20px 0' method='get'>
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name='top'>
+                <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+            <hr>
+            <ul class='list-group margin-top: 50px'>
+                    <li>
+                        <a href="{%url 'home'%}" class="list-group-item list-group-item-action list-group-item-light">All</a>
+                    </li>
+                {%for topic in topics%}
+                    <li>
+                        <a href="{%url 'home'%}?q={{topic.name}}" class="list-group-item list-group-item-action list-group-item-light">{{topic}}</a>
+                    </li>
+                {%endfor%}
+            </ul>
+        </div>
+
+
+
+        <div class="col-md-7 gedf-main"> 
+            {% comment %} style='margin: 30px 48px'> {% endcomment %}
+
+
+
+        <div class="col">
+            <h4 class="btn btn-primary">{{room_count}} room avalible</h4>
+            <a href="{%url 'create_room'%}" class="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-300 text-white rounded-lg inline-flex items-center justify-center px-4 py-2.5 dark:bg-gray-700 dark:hover:bg-gray-600 dark:focus:ring-gray-700">
+                <div class="text-left">
+                    <div class="-mt-0 font-sans text-sm font-semibold">Create Room</div>
+                </div>
+            </a>
+        </div>
+
+
+
+
+        
+            {%for room in rooms%}
+
+            {% comment  %}
+            
+
+            
+                <div class='row card bg-secondary' style="margin:50px 30px">    
+                    <div class='card-header'>
+                    <h1>@{{room.host}}</h1> 
+
+                        <div class="card gedf-card  bg-secondary">
+                            <div class="card-header">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="mr-2">
+                                            <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                        </div>
+                                        <div class="ml-2">
+                                            <div class="h5 m-0">@{{room.host}}</div>
+                                            <div class="h7 text-muted">{{room.host}}</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <div class="dropdown">
+                                            <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fa fa-ellipsis-h"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                                <div class="h6 dropdown-header">Configuration</div>
+                                                <a class="dropdown-item" href="#">Save</a>
+                                                <a class="dropdown-item" href="#">Hide</a>
+                                                <a class="dropdown-item" href="#">Report</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                            </div>
+                            <div class="card-body">
+                                <div class=" h7 mb-2"> <i class="fa fa-clock-o"></i>{{room.created}}</div>
+                                <a class="card-link" href="{%url 'room' room.id %}">
+                                    <h5 class="card-title" style='font-size:28px; font-weight:bold;'>{{room.name}}</h5>
+                                </a>
+            
+                                <p class="card-text">{{room.descriptions}}</p>
+                            </div>
+                            <div class="card-footer">
+                                <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                                <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                                <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+                    <div class='card-body card-title'>
+                        <a href="{%url 'room' room.id %}"><h1>{{room.name}}</h1></a>
+                        <p>{{room.descriptions}}</p>
+                    </div> 
+                    {% if room.host == user_check%}
+                        <div class='w-auto p-3 text-end'>
+                            <a href="{%url 'update' room.id%}" >
+                                <button type="button" class="btn btn-primary">
+                                    Update
+                                </button>
+                            </a>
+                            <a href="{%url 'delete' room.id%}" >
+                                <button type="button" class="btn btn-primary">
+                                    Delete
+                                </button>
+                            </a>
+                        </div>
+                    {%endif%}
+                </div>
+            
+
+
+            {% endcomment %}
+
+
+
+
+
+
+
+            
+
+
+
+                <div class="card gedf-card  bg-secondary " style='margin:50px 0px'>
+                    <div class="card-header">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="mr-2">
+                                    <img class="rounded-circle" width="45" src="https://picsum.photos/50/50" alt="">
+                                </div>
+                                <div class="ml-2">
+                                    <div class="h5 m-0">@{{room.host}}</div>
+                                    <div class="h7 text-muted">{{room.host}}</div>
+                                </div>
+                            </div>
+                            <div>
+                                <div class="dropdown">
+                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        <i class="fa fa-ellipsis-h"></i>
+                                    </button>
+                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                        <div class="h6 dropdown-header">Configuration</div>
+                                        <a class="dropdown-item" href="#">Save</a>
+                                        <a class="dropdown-item" href="#">Hide</a>
+                                        <a class="dropdown-item" href="#">Report</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+    
+                    </div>
+                    <div class="card-body">
+                        <div class=" h7 mb-2 text-light"> <i class="fa fa-clock-o"></i> {{room.created|timesince}} ago</div>
+                        <a class="card-link" href="{%url 'room' room.id%}">
+                            <h5 class="card-title" style='font-size:25px'>{{room.name}}</h5>
+                        </a>
+    
+                        <p class="card-text">{{room.descriptions}}</p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="#" class="card-link"><i class="fa fa-gittip"></i> Like</a>
+                        <a href="#" class="card-link"><i class="fa fa-comment"></i> Comment</a>
+                        <a href="#" class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
+
+                        {% if room.host == user_check %}
+                        {% comment %} <div class='w-auto p-3 text-end'> {% endcomment %}
+                            <a href="{%url 'update' room.id%}" style='margin:0px 15px'>
+                                <button type="button" class="btn btn-primary">
+                                    Update
+                                </button>
+                            </a>
+                            <a href="{%url 'delete' room.id%}" style='margin:0px 15px' >
+                                <button type="button" class="btn btn-primary">
+                                    Delete
+                                </button>
+                            </a>
+                        {% comment %} </div> {% endcomment %}
+                    {%endif%}
+
+
+                    </div>
+                </div>
+            
+
+
+                
+
+                
+                {%endfor%}
+            </div>
+
+        {% comment %} <div class="col-md-auto ">
+            
+        </div> {% endcomment %}
+
+        <div class="col-md-3" style="margin:80px 0px" >
+            <div class="card gedf-card bg-secondary">
+                <div class="card-body">
+                    <h2 class="card-title" style='font-weight:bold; font-size:25px;'>RECENT ACTIVITIES</h2>
+                    <hr/>
+                    {% comment %} <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> {% endcomment %}
+                    {%for p in last_message%}
+                    <h3 class='card-text' style='font-size:20px'>@{{p.user}} <i class="fa fa-clock-o"></i> {{p.created|timesince}}
+                    </h3>
+                    <p>{{p.body}}</p>
+
+                    <p class="card-text"></p>
+                    <hr/>
+
+                    {%endfor%}
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+
+
+{%endblock%}
+    
+    
+    

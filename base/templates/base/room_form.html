@@ -1,0 +1,21 @@
+{% extends 'main.html'%}
+
+{%block title%}Update {{obj.name}}{%endblock%}
+
+{%block content%}
+
+<style>
+    form select, form input, form textarea{
+        background-color: gray;
+        color: white; 
+    }
+</style>
+
+<div >
+    <form method='post' action='' >
+        {% csrf_token %}
+        {{form.as_p}}
+        <button type="submit" class="btn btn-danger">Submit</button>
+    </form>
+</div>
+{% endblock%}

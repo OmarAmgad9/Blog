@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+
+{%block title%}Resigter {%endblock%}
+
+{%block content%}
+<div class="d-flex justify-content-center" style="margin-top:11%;">
+    <form method='post' action='.'>
+        {%csrf_token%}
+            {{form.as_p}}
+        <button type="submit" class="btn btn-primary btn-block mb-4">Sign in</button>
+    </form>
+<div>
+
+{%endblock%}
